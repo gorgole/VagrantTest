@@ -1,1 +1,1 @@
-{"virtualbox":{"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/manishgoyal/workspace/VagrantTest","disabled":false,"__vagrantfile":true}}}
+{"virtualbox":{"/home/vagrant/workspace":{"guestpath":"/home/vagrant/workspace","hostpath":"/Users/manishgoyal/workspace","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/manishgoyal/workspace/VagrantTest","disabled":false,"__vagrantfile":true}}}

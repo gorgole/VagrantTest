@@ -1,18 +1,38 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+Vagrant.configure("2") do |config|
+    config.vm.box = "ubuntu/trusty64"
+    config.vm.provision :shell, :path => "scripts/setup.sh"
+    #config.vm.network :forwarded_port, host: 8080, guest: 8080
+    #config.vm.network :forwarded_port, host: 3000, guest: 3000
+    config.ssh.insert_key = true
+    #config.vm.synced_folder "../data", "/vagrant_data"
+    # Create a private network, which allows host-only access to the machine
+    # using a specific IP.
+    config.vm.network "private_network", ip: "192.168.33.10"
+    config.vm.synced_folder "/Users/manishgoyal/workspace", "/home/vagrant/workspace"
+    config.vm.provider :virtualbox do |vb|
+        #vb.gui = true
+        # Use VBoxManage to customize the VM. For example to change memory:
+        vb.customize ["modifyvm", :id, "--memory", "4096"]
+        vb.customize ["modifyvm", :id, "--vram", 64]
+        #vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
+    end
+end
+
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
-Vagrant.configure(2) do |config|
+#Vagrant.configure(2) do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "hashicorp/precise64"
+  #config.vm.box = "hashicorp/precise64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -68,4 +88,4 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
   # SHELL
-end
+#end
