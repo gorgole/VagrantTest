@@ -97,7 +97,11 @@ sudo apt-get install cassandra-tools ## Optional utilities
 #sudo apt-get install -y ubuntu-desktop virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
 #sudo apt-get install -y gnome-session-flashback
 
-# provide m2
+sudo apt-get install zsh
+sudo chsh -s $(which zsh)
+
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 sudo chown -R vagrant:vagrant /home/vagrant
 
 # clean the box
