@@ -50,6 +50,9 @@ sudo npm install -g npm
 # install yeoman gsudot bower grunt gulp
 sudo npm install -g yo bower grunt-cli gulp
 
+#install ruby and compass
+sudo gem install compass
+
 # Install necessary tools
 sudo apt-get install -y nano wget dialog net-tools
 
