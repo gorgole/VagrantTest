@@ -23,6 +23,17 @@ export ACTIVATOR_VER='1.3.7'
 sudo locale-gen en_US.UTF-8
 sudo dpkg-reconfigure locales
 
+# force encoding
+sudo echo 'LANG=en_US.UTF-8' >> /etc/environment
+sudo echo 'LANGUAGE=en_US.UTF-8' >> /etc/environment
+sudo echo 'LC_ALL=en_US.UTF-8' >> /etc/environment
+sudo echo 'LC_CTYPE=en_US.UTF-8' >> /etc/environment
+#
+## install languages
+sudo apt-get install -y language-pack-fr
+sudo apt-get install -y language-pack-en
+#
+
 # install utilities
 sudo apt-get -y install vim git sudo zip bzip2 fontconfig curl
 
@@ -81,15 +92,6 @@ sudo apt-get install cassandra-tools ## Optional utilities
 # Install the graphical environment
 ################################################################################
 
-# force encoding
-#sudo echo 'LANG=en_US.UTF-8' >> /etc/environment
-#sudo echo 'LANGUAGE=en_US.UTF-8' >> /etc/environment
-#sudo echo 'LC_ALL=en_US.UTF-8' >> /etc/environment
-#sudo echo 'LC_CTYPE=en_US.UTF-8' >> /etc/environment
-#
-## install languages
-#sudo apt-get install -y language-pack-fr
-#
 ## sudo GUI as non-privileged user
 #sudo echo 'allowed_users=anybody' > /etc/X11/Xwrapper.config
 #
@@ -97,11 +99,10 @@ sudo apt-get install cassandra-tools ## Optional utilities
 #sudo apt-get install -y ubuntu-desktop virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
 #sudo apt-get install -y gnome-session-flashback
 
-sudo dpkg --configure -a
 sudo apt-get -y install zsh
 sudo chsh -s $(which zsh)
-
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+touch ~/.zshrc
+sudo sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 sudo chown -R vagrant:vagrant /home/vagrant
 
