@@ -106,7 +106,7 @@ sudo apt-get install cassandra-tools ## Optional utilities
 ################################################################################
 # Install the zsh shell
 ################################################################################
-
+sudo dpkg --configure -a
 sudo apt-get -y install zsh
 sudo chsh -s $(which zsh)
 touch ~/.zshrc
@@ -115,7 +115,6 @@ sudo sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/to
 #sudo chown -R vagrant:vagrant /home/vagrant
 
 # clean the box
-sudo dpkg --configure -a
 sudo apt-get clean
 dd if=/dev/zero of=/EMPTY bs=1M > /dev/null 2>&1
 rm -f /EMPTY
