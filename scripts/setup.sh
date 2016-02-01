@@ -28,11 +28,10 @@ sudo echo 'LANG=en_US.UTF-8' >> /etc/environment
 sudo echo 'LANGUAGE=en_US.UTF-8' >> /etc/environment
 sudo echo 'LC_ALL=en_US.UTF-8' >> /etc/environment
 sudo echo 'LC_CTYPE=en_US.UTF-8' >> /etc/environment
-#
+
 ## install languages
 sudo apt-get install -y language-pack-fr
 sudo apt-get install -y language-pack-en
-#
 
 # install utilities
 sudo apt-get -y install vim git sudo zip bzip2 fontconfig curl
@@ -41,12 +40,15 @@ sudo apt-get -y install vim git sudo zip bzip2 fontconfig curl
 sudo echo 'deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' >> /etc/apt/sources.list
 sudo echo 'deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' >> /etc/apt/sources.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C2518248EEA14886
-
+#other repo for java 8
+#sudo add-apt-repository -y ppa:webupd8team/java
+#
 sudo apt-get update
-
+#
 sudo echo oracle-java-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
 sudo apt-get install -y --force-yes oracle-java${JAVA_VERSION}-installer
 sudo update-java-alternatives -s java-8-oracle
+sudo apt-get install oracle-java8-set-default
 
 # install maven
 sudo curl -fsSL http://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz | sudo tar xzf - -C /usr/share && sudo mv /usr/share/apache-maven-${MAVEN_VERSION} /usr/share/maven && sudo ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
@@ -80,6 +82,7 @@ sudo wget http://downloads.typesafe.com/typesafe-activator/${ACTIVATOR_VER}/type
 
 sudo chmod -R 777 /opt/activator
 export PATH=$PATH:/opt/activator
+sudo ln -s /opt/activator/activator /usr/bin/activator
 
 #installing cassandra
 sudo echo "deb http://debian.datastax.com/community stable main" | tee -a /etc/apt/sources.list.d/cassandra.sources.list
@@ -99,14 +102,20 @@ sudo apt-get install cassandra-tools ## Optional utilities
 #sudo apt-get install -y ubuntu-desktop virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
 #sudo apt-get install -y gnome-session-flashback
 
+
+################################################################################
+# Install the zsh shell
+################################################################################
+
 sudo apt-get -y install zsh
 sudo chsh -s $(which zsh)
 touch ~/.zshrc
 sudo sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-sudo chown -R vagrant:vagrant /home/vagrant
+#sudo chown -R vagrant:vagrant /home/vagrant
 
 # clean the box
+sudo dpkg --configure -a
 sudo apt-get clean
 dd if=/dev/zero of=/EMPTY bs=1M > /dev/null 2>&1
 rm -f /EMPTY
