@@ -64,6 +64,7 @@ sudo npm install -g npm
 sudo npm install -g yo bower grunt-cli gulp
 
 #install ruby and compass
+sudo apt-get install -y ruby-dev
 sudo gem install compass
 
 # Install necessary tools
