@@ -88,12 +88,19 @@ sudo chmod -R 777 /opt/activator
 export PATH=$PATH:/opt/activator
 sudo ln -s /opt/activator/activator /usr/bin/activator
 
+#Uninstall cassandra
+#sudo service cassandra stop
+#sudo rm -r /var/lib/cassandra
+#sudo rm -r /var/log/cassandra
+#sudo apt-get purge "cassandra-*" "datastax-*"
+
+
 #installing cassandra
 sudo echo "deb http://debian.datastax.com/community stable main" | tee -a /etc/apt/sources.list.d/cassandra.sources.list
 sudo curl -L https://debian.datastax.com/debian/repo_key | apt-key add -
 sudo apt-get update
-sudo apt-get -q -y install dsc30
-sudo apt-get install cassandra-tools ## Optional utilities
+sudo apt-get install dsc21=2.1.5-1 cassandra=2.1.5
+sudo apt-get install cassandra-tools=2.1.5 ## Optional utilities
 
 ################################################################################
 # Install the graphical environment
