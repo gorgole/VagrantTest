@@ -56,6 +56,9 @@ sudo curl -fsSL http://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/bi
 # install node.js
 sudo curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
 sudo apt-get install -y nodejs unzip python g++ build-essential
+sudo curl -sL http://launchpadlibrarian.net/109052632/python-support_1.0.15_all.deb -o python-support.deb
+sudo dpkg --install python-support.deb
+rm -rf python-support.deb
 
 # update npm
 sudo npm install -g npm
@@ -96,8 +99,8 @@ sudo ln -s /opt/activator/activator /usr/bin/activator
 
 
 #installing cassandra
-sudo echo "deb http://debian.datastax.com/community stable main" | tee -a /etc/apt/sources.list.d/cassandra.sources.list
-sudo curl -L https://debian.datastax.com/debian/repo_key | apt-key add -
+sudo echo "deb http://debian.datastax.com/community stable main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
+sudo curl -L https://debian.datastax.com/debian/repo_key | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install dsc21=2.1.5-1 cassandra=2.1.5
 sudo apt-get install cassandra-tools=2.1.5 ## Optional utilities
